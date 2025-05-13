@@ -1,0 +1,15 @@
+# Inside your project root folder (competition_site/)
+echo ".env
+*.pyc
+__pycache__/
+*.sqlite3
+venv/
+*.log
+*.pot
+*.py[co]
+*.sw[po]
+*.DS_Store
+/media/
+/staticfiles/
+db.sqlite3
+.env" > .gitignore

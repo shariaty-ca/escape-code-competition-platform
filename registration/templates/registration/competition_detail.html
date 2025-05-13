@@ -1,0 +1,24 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>{{ competition.name }}</h1>
+<p class="lead">{{ competition.description }}</p>
+<p><strong>Dates:</strong> {{ competition.start_date|date:"M d, Y H:i" }} to {{ competition.end_date|date:"M d, Y H:i" }}</p>
+<p><strong>Participants:</strong> {{ participants_count }} / {{ competition.max_participants }}</p>
+
+{% if registered %}
+    <div class="alert alert-success">You're already registered for this competition!</div>
+{% else %}
+    {% if participants_count >= competition.max_participants %}
+        <div class="alert alert-warning">This competition has reached maximum participants.</div>
+    {% else %}
+        <h3>Register</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    {% endif %}
+{% endif %}
+{% endblock %}
