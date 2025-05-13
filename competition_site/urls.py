@@ -31,5 +31,6 @@ urlpatterns = [
     path('register/', views.user_register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('competition/<int:pk>/', views.competition_detail, name='competition_detail'),
 ]

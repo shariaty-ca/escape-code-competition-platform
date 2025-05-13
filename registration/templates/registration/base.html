@@ -11,8 +11,12 @@
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
                     <span class="nav-item nav-link">Hello, {{ user.username }}</span>
-                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-                {% else %}
+                    <form action="{% url 'logout' %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link btn btn-link" style="display: inline;">
+                            Logout
+                        </button>
+                    </form>               {% else %}
                     <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                     <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                 {% endif %}
